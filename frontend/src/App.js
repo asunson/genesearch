@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Redirect, Route, withRouter } from 'react-router-dom';
-import './styles/App.css';
+import { BrowserRouter as Router, Redirect, Route, Switch, withRouter } from 'react-router-dom';
+import './styles/App.scss';
 import {TopBar} from './layouts/TopBar'
 
 class ScrollToTop extends Component {
@@ -12,9 +12,11 @@ class ScrollToTop extends Component {
 
   render() {
     return (
-      <TopBar>
-        {this.props.children}
-      </TopBar>
+        <div>
+          <TopBar/>
+          {this.props.children}
+        </div>
+        
     )
   }
 }
@@ -26,6 +28,7 @@ function App() {
     <Router>
       <ScrollControl>
         <main>
+          <Switch>
             <Route exact path="/search" render={() => (
               <div>
                 This is some content
@@ -34,6 +37,7 @@ function App() {
             <Route exact path="/" render={() => (
               <Redirect to="/search"/>
             )}/>
+          </Switch>
         </main>
       </ScrollControl>
     </Router> 

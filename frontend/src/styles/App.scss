@@ -20,3 +20,17 @@
 .App-link {
   color: #09d3ac;
 }
+
+.topbar {
+  border-bottom: 1px solid #DFE3E8;
+  background-color: #FFFFFF;
+  display: 'flex';
+  align-items: 'center';
+  height: '64px';
+  z-index: 1200;
+}
+
+.toolbar {
+    min-height: 'auto';
+    width: '100%';
+}
