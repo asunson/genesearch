@@ -1,3 +1,6 @@
+@import "typography.scss";
+@import "index.scss";
+
 .App {
   text-align: center;
 }
@@ -23,7 +26,7 @@
 
 .topbar {
   border-bottom: 1px solid #DFE3E8;
-  background-color: #FFFFFF;
+  background-color: #f8fafc;
   display: 'flex';
   align-items: 'center';
   height: '64px';
@@ -33,4 +36,26 @@
 .toolbar {
     min-height: 'auto';
     width: '100%';
+}
+
+.pad-left {
+  padding-left: 10px;
+}
+
+.text-field {
+  margin-left: 8px;
+  margin-right: 8px;
+  width: 50%;
+}
+
+.button {
+  margin: 8px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.vertical-center {
+  vertical-align: center;
 }
