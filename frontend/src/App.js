@@ -47,7 +47,6 @@ class App extends Component {
               <Route exact path="/search" render={() => (
                 <div>
                   <GeneSearchInput handleTextChange={this.handleTextChange}/>
-                  <div>This is some content</div>
                 </div>
               )}/>
               <Route exact path="/" render={() => (

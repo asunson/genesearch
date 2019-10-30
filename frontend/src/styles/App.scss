@@ -48,14 +48,16 @@
   width: 50%;
 }
 
-.button {
-  margin: 8px;
-}
-
 .text-center {
   text-align: center;
 }
 
-.vertical-center {
-  vertical-align: center;
+.submit-button {
+  float: left;
+  margin-top: 32px;
+}
+
+.main-paper {
+  margin: 32px;
+  padding: 32px;
 }
