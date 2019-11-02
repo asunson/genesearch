@@ -3,13 +3,13 @@ from .models import Sample
 from .models import Gene
 
 class SampleAdmin(admin.ModelAdmin): 
-    list_display = ('name', 'description') 
+    list_display = ('name',) 
 
 class GeneAdmin(admin.ModelAdmin): 
-    list_display = ('get_samples', 'symbol', 'fpkm') 
+    list_display = ('sample', 'symbol', 'fpkm') 
 
-    def get_samples(self, obj):
-        return "\n".join([s.name for s in obj.sample.all()])
+    # def get_samples(self, obj):
+    #     return "\n".join([s.name for s in obj.sample.all()])
 
 admin.site.register(Sample, SampleAdmin)
 admin.site.register(Gene, GeneAdmin)

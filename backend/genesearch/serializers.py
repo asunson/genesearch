@@ -5,9 +5,9 @@ from .models import Gene
 class SampleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sample
-        fields = ('id', 'name', 'description')
+        fields = ('id', 'name')
 
 class GeneSerializer(serializers.ModelSerializer):
     class Meta:
         model = Gene
-        fields = ('id', 'sample', 'symbol', 'fpkm')
+        fields = ('id', 'symbol', 'fpkm', 'sample')
