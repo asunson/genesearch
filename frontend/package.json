@@ -36,5 +36,6 @@
     "cross-env": "^6.0.3",
     "enzyme": "^3.10.0",
     "node-sass": "^4.13.0"
-  }
+  },
+  "proxy": "http://localhost:8000",
 }
