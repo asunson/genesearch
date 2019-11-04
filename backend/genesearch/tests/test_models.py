@@ -1,13 +1,13 @@
-from django.test import TestCase
-from .models import Sample, Gene
+from django.test import TestCase, Client
+from ..models import Sample, Gene
 
-class SampleTestCase(TestCase):
+class SampleGeneTestCase(TestCase):
     def setUp(self):
-        s1 = Sample(name = "Sample 1")
+        s1 = Sample(name = "Sample 1", species = "Human", status = "Vitro")
         s1.save()
-        s2 = Sample(name = "Sample 2")
+        s2 = Sample(name = "Sample 2", species = "Human", status = "Vivo")
         s2.save()
-        s3 = Sample(name = "Sample 3")
+        s3 = Sample(name = "Sample 3", species = "Mouse", status = "Vivo")
         s3.save()
 
         g1_1 = Gene.objects.create(symbol = 'GENE1', fpkm = 1.1, sample = s1)
@@ -25,11 +25,25 @@ class SampleTestCase(TestCase):
         g3_1 = Gene.objects.create(symbol = 'GENE3', fpkm = 3.0, sample = s1)
         g3_1.save()
 
-    def test_samples_were_stored_properly(self):
+    def test_samples_have_species(self):
         sample_1 = Sample.objects.get(name="Sample 1")
         sample_2 = Sample.objects.get(name="Sample 2")
         sample_3 = Sample.objects.get(name="Sample 3")
 
+        self.assertEqual(sample_1.species, "Human")
+        self.assertEqual(sample_2.species, "Human")
+        self.assertEqual(sample_3.species, "Mouse")
+
+    def test_samples_have_status(self):
+        sample_1 = Sample.objects.get(name="Sample 1")
+        sample_2 = Sample.objects.get(name="Sample 2")
+        sample_3 = Sample.objects.get(name="Sample 3")
+
+        self.assertEqual(sample_1.status, "Vitro")
+        self.assertEqual(sample_2.status, "Vivo")
+        self.assertEqual(sample_3.status, "Vivo")
+
+    def test_samples_were_stored_properly(self):
         self.assertEqual(Sample.objects.count(), 3)
 
     def test_sample1_should_have_3_genes(self):
@@ -49,5 +63,3 @@ class SampleTestCase(TestCase):
         sample_3 = Sample.objects.get(name="Sample 3")
         sample_3_genes = sample_3.genes
         self.assertEqual(sample_3_genes.count(), 1)
-
-

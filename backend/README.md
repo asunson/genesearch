@@ -8,10 +8,12 @@ A reference sheet for useful Django commands
     - For when the model is modified.
 - `python manage.py migrate genesearch`
     - Synchronize database state with current models
+- `python manage.py loaddata <fixure_name>`
+    - Load fixture data into database
 
 *Testing*
 
-- `python manage.py test`
+- `python manage.py test genesearch.tests`
     - Run the testing suite.
 
 *Starting the App*

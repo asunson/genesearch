@@ -3,7 +3,7 @@ from .models import Sample
 from .models import Gene
 
 class SampleAdmin(admin.ModelAdmin): 
-    list_display = ('name',) 
+    list_display = ('name', 'species', 'status') 
 
 class GeneAdmin(admin.ModelAdmin): 
     list_display = ('sample', 'symbol', 'fpkm') 

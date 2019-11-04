@@ -4,9 +4,11 @@ from django.db import models
 # add this
 class Sample(models.Model):
     name = models.CharField(max_length=50)
+    species = models.CharField(max_length=20)
+    status = models.CharField(max_length=20)
 
     class Meta:
-        ordering = ('name',)
+        ordering = ('name', 'species', 'status')
 
     def _str_(self):
         return self.name
@@ -25,4 +27,4 @@ class Gene(models.Model):
         return self.symbol
 
     class Meta:
-        ordering = ('symbol',)
+        ordering = ('symbol', 'sample', 'fpkm')

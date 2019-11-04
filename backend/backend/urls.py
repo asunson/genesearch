@@ -21,6 +21,7 @@ from genesearch import views
 router = routers.DefaultRouter()
 router.register(r'samples', views.SampleView, 'sample')
 router.register(r'genes', views.GeneView, 'gene')
+# router.register(r'search', views.GeneSearchView, 'genesearch')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
