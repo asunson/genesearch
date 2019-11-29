@@ -46,6 +46,7 @@ export class MainRoutes extends Component {
     handleTextChange = (e) => {
         var s = e.target.value;
         var list = s.split(/[\s ,\n\t]+/);
+        list = list.map((s) => s.toUpperCase())
         this.setState({geneList: list});
     }
 
