@@ -14,8 +14,8 @@ export const TopBar = () => {
 	return(
 		<div className="topbar">
 			<Toolbar className="toolbar">
-             		<MenuIcon />
-             		<Typography variant="h5" className="pad-left">GeneSearch</Typography>
+             		<MenuIcon className='text-top pad-left'/>
+             		<Typography variant="h5" className="pad-left text-top">GeneSearch</Typography>
 			</Toolbar>
 			
 		</div>

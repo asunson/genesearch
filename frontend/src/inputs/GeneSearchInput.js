@@ -2,15 +2,14 @@ import React from 'react';
 import '../styles/App.scss'
 
 import { Paper, Typography, TextField, Grid } from '@material-ui/core';
-import { zIndex } from '@material-ui/system'
 import Button from '@material-ui/core/Button';
 
 export const GeneSearchInput = (props) => {
 	return(
 			<div>
-				<Paper className="main-paper" elevation={3}>
+				<Paper className="paper-main" elevation={3}>
 					<Typography variant="h5">Query for your genes of interest here:</Typography>
-					<Typography variant="p">{"You can input any number of genes separated by commas or spaces. Genes are case insentive. Please use Gene Symbols only."}</Typography>
+					<Typography variant="body1">{"You can input any number of genes separated by commas or spaces. Genes are case insentive. Please use Gene Symbols only."}</Typography>
 					<form className="text-center">
 						<Grid
 				          container
@@ -31,8 +30,8 @@ export const GeneSearchInput = (props) => {
 							      />
 							</Grid>
 							<Grid item lg={2} md={2} xl={2} xs={12}>
-								<div style={{'margin-top': '32px'}}>
-						      		<Button className="submit-button" variant="contained" color="primary" onClick={ () => {} }>
+								<div style={{'marginTop': '32px'}}>
+						      		<Button className="submit-button" variant="contained" color="primary" onClick={props.handleSubmit}>
 					        			Submit
 						    		</Button>
 					    		</div>

@@ -15,6 +15,6 @@ class GeneView(viewsets.ModelViewSet):
 
 @api_view(['POST'])
 def getGeneInformation(request):
-    queryset = Gene.objects.filter(symbol__in=request.data.getlist("geneList"))
+    queryset = Gene.objects.filter(symbol__in=request.data["geneList"])
     data = GeneSerializer(queryset, many=True).data
     return Response(data)

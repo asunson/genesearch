@@ -19,10 +19,18 @@ class SerializerTestCase(TestCase):
             set(sample_data.keys()), 
             set(['id', 'name', 'species', 'status'])
         )
+        self.assertEqual(
+            set(sample_data.values()), 
+            set([1, "Sample 1", "Human", "Vitro"])
+        )
 
     def test_gene_serializer_works(self):
         gene_data = self.geneSerializer.data
         self.assertEqual(
             set(gene_data.keys()), 
-            set(['id', 'symbol', 'fpkm', 'sample'])
+            set(['id', 'symbol', 'fpkm', 'sample_name'])
+        )
+        self.assertEqual(
+            set(gene_data.values()),
+            set([1, 'GENE1', 1.1, 'Sample 1'])
         )

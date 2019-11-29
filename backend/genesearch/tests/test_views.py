@@ -31,37 +31,37 @@ class APITestCase(TestCase):
                 "id": 1,
                 "symbol": "GENE1",
                 "fpkm": 1.1,
-                "sample": 1
+                "sample_name": "Sample 1"
             },
             {
                 "id": 2,
                 "symbol": "GENE1",
                 "fpkm": 1.2,
-                "sample": 2
+                "sample_name": "Sample 2"
             },
             {
                 "id": 3,
                 "symbol": "GENE1",
                 "fpkm": 1.3,
-                "sample": 3
+                "sample_name": "Sample 3"
             },
             {
                 "id": 4,
                 "symbol": "GENE2",
                 "fpkm": 2.1,
-                "sample": 1
+                "sample_name": "Sample 1"
             },
             {
                 "id": 5,
                 "symbol": "GENE2",
                 "fpkm": 2.2,
-                "sample": 2
+                "sample_name": "Sample 2"
             },
             {
                 "id": 6,
                 "symbol": "GENE3",
                 "fpkm": 3.0,
-                "sample": 1
+                "sample_name": "Sample 1"
             }
         ]
 
@@ -104,35 +104,35 @@ class APITestCase(TestCase):
                 "id": 1,
                 "symbol": "GENE1",
                 "fpkm": 1.1,
-                "sample": 1
+                "sample_name": "Sample 1"
             },
             {
                 "id": 2,
                 "symbol": "GENE1",
                 "fpkm": 1.2,
-                "sample": 2
+                "sample_name": "Sample 2"
             },
             {
                 "id": 3,
                 "symbol": "GENE1",
                 "fpkm": 1.3,
-                "sample": 3
+                "sample_name": "Sample 3"
             },
             {
                 "id": 4,
                 "symbol": "GENE2",
                 "fpkm": 2.1,
-                "sample": 1
+                "sample_name": "Sample 1"
             },
             {
                 "id": 5,
                 "symbol": "GENE2",
                 "fpkm": 2.2,
-                "sample": 2
+                "sample_name": "Sample 2"
             }
         ]
 
         c = Client()
-        response = c.post('/api/search/', {"geneList": ['GENE1', 'GENE2']})
+        response = c.post('/api/search/', {"geneList": ['GENE1', 'GENE2']}, content_type='application/json')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json(), genes)

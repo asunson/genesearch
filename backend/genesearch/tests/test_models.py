@@ -58,7 +58,6 @@ class SampleGeneTestCase(TestCase):
         for i in range(sample_1_genes.count()):
             self.assertEqual(genes[i].symbol, gene_names[i])
         
-
     def test_sample3_should_only_have_1_gene(self):
         sample_3 = Sample.objects.get(name="Sample 3")
         sample_3_genes = sample_3.genes

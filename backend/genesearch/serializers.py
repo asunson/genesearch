@@ -8,6 +8,8 @@ class SampleSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'species', 'status')
 
 class GeneSerializer(serializers.ModelSerializer):
+    sample_name = serializers.CharField(source='sample.name')
+    
     class Meta:
         model = Gene
-        fields = ('id', 'symbol', 'fpkm', 'sample')
+        fields = ('id', 'symbol', 'fpkm', 'sample_name')
