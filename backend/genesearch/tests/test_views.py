@@ -98,26 +98,41 @@ class APITestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json(), samples)
     
-    # def test_post_request_to_search_returns_proper_gene_information(self):
-    #     genes = [
-    #         {
-    #             "symbol": "GENE1",
-    #             "fpkm": 1.1,
-    #             "sample": 'Sample 1'
-    #         },
-    #         {
-    #             "symbol": "GENE1",
-    #             "fpkm": 1.2,
-    #             "sample": 'Sample 2'
-    #         },
-    #         {
-    #             "symbol": "GENE1",
-    #             "fpkm": 1.3,
-    #             "sample": 'Sample 3'
-    #         }
-    #     ]
+    def test_post_request_returns_genes_of_interest(self):
+        genes = [
+            {
+                "id": 1,
+                "symbol": "GENE1",
+                "fpkm": 1.1,
+                "sample": 1
+            },
+            {
+                "id": 2,
+                "symbol": "GENE1",
+                "fpkm": 1.2,
+                "sample": 2
+            },
+            {
+                "id": 3,
+                "symbol": "GENE1",
+                "fpkm": 1.3,
+                "sample": 3
+            },
+            {
+                "id": 4,
+                "symbol": "GENE2",
+                "fpkm": 2.1,
+                "sample": 1
+            },
+            {
+                "id": 5,
+                "symbol": "GENE2",
+                "fpkm": 2.2,
+                "sample": 2
+            }
+        ]
 
-    #     c = Client()
-    #     response = c.post('/api/search/', {"genelist": ['GENE1']})
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertEqual(response.json(), samples)
+        c = Client()
+        response = c.post('/api/search/', {"geneList": ['GENE1', 'GENE2']})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), genes)
