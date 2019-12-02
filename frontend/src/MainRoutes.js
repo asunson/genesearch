@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch, withRouter } from 'react-router-dom';
-import {TopBar} from './layouts/TopBar'
-import {GeneSearchInput} from './inputs/GeneSearchInput'
-
+import { TopBar } from './layouts/TopBar'
+import { ResultsPage } from './layouts/ResultsPage'
+import { GeneSearchInput } from './inputs/GeneSearchInput'
 
 class ScrollToTop extends Component {
     componentDidUpdate(prevProps) {
@@ -14,7 +14,7 @@ class ScrollToTop extends Component {
     render() {
         return (
             <div>
-                <TopBar/>
+                <TopBar />
                 {this.props.children}
             </div>
         )
@@ -34,10 +34,10 @@ export class MainRoutes extends Component {
     }
 
     componentDidMount() {
-        fetch("api/samples/", {method: "get"}).then(
-            response => {return response.json()}
+        fetch("api/samples/", { method: "get" }).then(
+            response => { return response.json() }
         ).then(
-            data => this.setState({samples: data})
+            data => this.setState({ samples: data })
         ).catch(
             (e) => console.log(e)
         );
@@ -47,20 +47,20 @@ export class MainRoutes extends Component {
         var s = e.target.value;
         var list = s.split(/[\s ,\n\t]+/);
         list = list.map((s) => s.toUpperCase())
-        this.setState({geneList: list});
+        this.setState({ geneList: list });
     }
 
     queryGenes = () => {
         fetch(
             "api/search/", {
-                method: "post",
-                body: JSON.stringify({geneList: this.state.geneList}),
-                headers: new Headers({"Content-Type": "application/json"})
-            }
+            method: "post",
+            body: JSON.stringify({ geneList: this.state.geneList }),
+            headers: new Headers({ "Content-Type": "application/json" })
+        }
         ).then(
-            response => {return response.json()}
+            response => { return response.json() }
         ).then(
-            data => this.setState({geneResults: data})
+            data => this.setState({ geneResults: data })
         ).catch(
             (e) => console.log(e)
         );
@@ -74,20 +74,26 @@ export class MainRoutes extends Component {
                         <Switch>
                             <Route exact path="/search" render={() => (
                                 <div>
-                                    <GeneSearchInput 
+                                    <GeneSearchInput
                                         handleTextChange={this.handleTextChange.bind(this)}
                                         handleSubmit={this.queryGenes.bind(this)}
                                     />
+                                    {this.state.geneResults ?
+                                        <ResultsPage
+                                            geneResults={this.state.geneResults}
+                                            samples={this.state.samples}
+                                        /> : <></>}
+
                                 </div>
-                            )}/>
+                            )} />
                             <Route exact path="/" render={() => (
-                                <Redirect to="/search"/>
-                            )}/>
-                            <Redirect to="/search"/>
+                                <Redirect to="/search" />
+                            )} />
+                            <Redirect to="/search" />
                         </Switch>
                     </main>
                 </ScrollControl>
-            </Router> 
+            </Router>
         )
     }
 }
