@@ -35,7 +35,7 @@ export const ResultsPage = ({ geneResults, samples }) => {
             "BC3t GFP-3"
         ],
         indexBy: "Gene",
-        margin: { top: 100, right: 60, bottom: 60, left: 60 },
+        margin: { top: 100, right: 80, bottom: 60, left: 80 },
         axisTop: {
             orient: 'top',
             tickSize: 5,
@@ -54,17 +54,20 @@ export const ResultsPage = ({ geneResults, samples }) => {
             tickRotation: 0,
             legend: 'Gene',
             legendPosition: 'middle',
-            legendOffset: -50
+            legendOffset: -75
         },
         tooltipFormat: (value) => `${Math.pow(2, value).toFixed(2)} FPKM`
     }
+    const height = `${200 + Object.keys(aggregatedGenes).length * 40}px`
 
     return (
         <Paper className="paper-results" elevation={3}>
-            <GeneExpressionHeatMap
-                data={expressionData}
-                chartSettings={chartSettings}
-            />
+            <div style={{ height: height }}>
+                <GeneExpressionHeatMap
+                    data={expressionData}
+                    chartSettings={chartSettings}
+                />
+            </div>
         </Paper>
     )
 };
