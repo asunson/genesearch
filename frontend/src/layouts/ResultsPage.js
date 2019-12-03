@@ -5,13 +5,14 @@ import groupBy from 'lodash.groupby';
 import { Paper } from '@material-ui/core';
 
 export const ResultsPage = ({ geneResults, samples }) => {
-    const sampleNames = samples.filter(sample => sample.status === "Vivo").map(sample => sample.name)
-    
+    console.log(geneResults)
+    const sampleNames = samples.filter(sample => sample.status === "Vivo" && sample.species === "Human").map(sample => sample.name)
+
     const aggregatedGenes = groupBy(geneResults.filter(geneResult => sampleNames.includes(geneResult.sample_name)), 'symbol');
 
     const expressionData = Object.keys(aggregatedGenes).map(
         (geneName) => {
-            let geneExpressionData = {"Gene": geneName}
+            let geneExpressionData = { "Gene": geneName }
             aggregatedGenes[geneName].forEach(
                 (gene) => {
                     geneExpressionData[gene.sample_name] = parseFloat(Math.log2(gene.fpkm).toFixed(2))
@@ -23,11 +24,15 @@ export const ResultsPage = ({ geneResults, samples }) => {
 
     const chartSettings = {
         keys: [
+            "BC3t parental-1",
+            "BC3t parental-2",
+            "BC3t parental-3",
+            "BC3t shCCL2-1",
+            "BC3t shCCL2-2",
+            "BC3t shCCL2-3",
             "BC3t GFP-1",
             "BC3t GFP-2",
-            "BC3t GFP-3",
-            "BC3t parental-3",
-            "BC3t shCCL2-3"
+            "BC3t GFP-3"
         ],
         indexBy: "Gene",
         margin: { top: 100, right: 60, bottom: 60, left: 60 },
@@ -37,7 +42,7 @@ export const ResultsPage = ({ geneResults, samples }) => {
             tickPadding: 5,
             tickRotation: -45,
             legend: 'Sample',
-            legendOffset: -75, 
+            legendOffset: -75,
             legendPosition: 'middle'
         },
         axisRight: null,
