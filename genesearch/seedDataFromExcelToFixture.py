@@ -30,8 +30,6 @@ with open('./fixtures/samples.json', 'w') as fp:
 
 print("converting samples... DONE")
 
-genes_h_vivo = []
-genes_m_vivo = []
 
 pk_s = 1
 pk_g = 1
@@ -42,6 +40,7 @@ print("converting human in vivo genes...")
 
 # convert human in vivo
 for name in df_h_vivo.columns[0:9]:
+    genes_h_vivo = []
     for gene, row in df_h_vivo[[name]].iterrows():
         genes_h_vivo.append(
             {
@@ -55,9 +54,9 @@ for name in df_h_vivo.columns[0:9]:
             }
         )
         pk_g += 1
+    with open('./fixtures/' + str(pk_s) + 'genes_h_vivo.json', 'w') as fp:
+        json.dump(genes_h_vivo, fp)
     pk_s += 1
-with open('./fixtures/genes_h_vivo.json', 'w') as fp:
-    json.dump(genes_h_vivo, fp)
 
 print("converting human in vivo genes... DONE")
 
