@@ -4,8 +4,8 @@ from django.db import models
 # add this
 class Sample(models.Model):
     name = models.CharField(max_length=50)
-    species = models.CharField(max_length=20)
-    status = models.CharField(max_length=20)
+    species = models.CharField(max_length=50)
+    status = models.CharField(max_length=50)
 
     class Meta:
         ordering = ('name', 'species', 'status')
@@ -14,7 +14,7 @@ class Sample(models.Model):
         return self.name
 
 class Gene(models.Model):
-    symbol = models.CharField(max_length=20)
+    symbol = models.CharField(max_length=50)
     fpkm = models.FloatField()
     sample = models.ForeignKey(
         Sample, 

@@ -1,2 +1,2 @@
-release: cd genesearch && python seedDataFromExcelToFixture.py && cd .. && python manage.py makemigrations genesearch && python manage.py migrate genesearch && python manage.py loaddata ./genesearch/fixtures/samples.json && python manage.py loaddata ./genesearch/fixtures/genes_h_vivo.json && python manage.py migrate
+release: python manage.py makemigrations genesearch && python manage.py migrate genesearch && python manage.py loaddata ./genesearch/fixtures/samples.json && python manage.py loaddata ./genesearch/fixtures/genes_h_vivo.json && python manage.py migrate
 web: gunicorn backend.wsgi --log-file -
