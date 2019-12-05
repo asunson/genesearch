@@ -1,2 +1,1 @@
-release: python manage.py makemigrations genesearch && python manage.py migrate && python manage.py loaddata ./genesearch/fixtures/samples.json && python manage.py loaddata ./genesearch/fixtures/*vivo.json && python manage.py migrate
 web: gunicorn backend.wsgi --log-file -
