@@ -1,5 +1,7 @@
 This is a project to create a standalone app to query RNASeq Data
 
+This app is hosted at https://awsun-genesearch.herokuapp.com
+
 # Cheatsheet
 
 A reference sheet for useful Django commands
